@@ -462,21 +462,21 @@
                         </div>
                     </div>
                     <div class="right">
-                        <form action="">
+                        <form action="https://script.google.com/macros/s/AKfycbxjX1u8WKkI103qxQuAraPiUFOwrETpodJooYlmX-v1QNHXrPvlLnFWXmMF_5AvCA/exec" method="POST" autocomplete="off" name="google-sheet" id="contact-form">
                             <div class="form_group">
                                 <div>
-                                  <label for="">Name</label>
-                                  <input type="text">
+                                  <label for="fname">Name</label>
+                                  <input type="text" name="Name" id="Name">
                                 </div>
                                 <div>
-                                  <label for="">Email</label>
-                                  <input type="email">
+                                  <label for="email">Email</label>
+                                  <input type="email" name="Email" id="Email">
                                 </div>
                             </div>
                             <div class="form_group textarea_wrapper">
                                 <div>
-                                  <label for="">Queries & Feedback</label>
-                                  <textarea name="" id="" cols="30" rows="4"></textarea>
+                                  <label for="queries">Queries & Feedback</label>
+                                  <textarea name="Queries & Feedback" id="Queries & Feedback" cols="30" rows="4"></textarea>
                                 </div>
                             </div>
                             <button type="submit">Submit</button>
@@ -493,5 +493,19 @@
         <script src="./plugins/headline/isotope.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script src="app.js"></script>
+        <script>
+            var form = document.getElementById('contact-form');
+            form.addEventListener("submit", e => {
+              e.preventDefault();
+              fetch(form.action, {
+                  method : "POST",
+                  body: new FormData(document.getElementById("contact-form")),
+              }).then(
+                  response => response.json()
+              ).then((html) => {
+                alert('Your Feedback has been received!')
+              });
+            });
+         </script>
     </body>
 </html>
